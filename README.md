@@ -38,3 +38,5 @@ FocusTrack is built for anyone who wants honest data about their online habits â
 
 
 OUTPUT:-
+<img width="1894" height="911" alt="Image" src="https://github.com/user-attachments/assets/8ee21616-3ea7-4f80-bf20-955c41fcb129" />
+<img width="1916" height="1013" alt="Image" src="https://github.com/user-attachments/assets/3f0244cd-6731-4f48-9d16-bff93a943c17" />
