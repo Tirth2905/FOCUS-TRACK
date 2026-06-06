@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusTrack</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">FOCUSTRACK</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+        <button class="icon-btn" id="syncBtn" title="Sync">↻</button>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="block">Block</button>
+      <button class="tab" data-tab="report">Report</button>
+      <button class="tab" data-tab="account">Account</button>
+    </nav>
+
+    <!-- Dashboard Tab -->
+    <div class="tab-content active" id="dashboard">
+      <div class="today-summary">
+        <div class="summary-item">
+          <span class="summary-label">TODAY</span>
+          <span class="summary-value" id="totalTime">0m</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">SITES</span>
+          <span class="summary-value" id="totalSites">0</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">BLOCKED</span>
+          <span class="summary-value" id="blockedCount">0</span>
+        </div>
+      </div>
+
+      <div class="section-label">TIME BREAKDOWN</div>
+      <div class="site-list" id="siteList">
+        <div class="empty-state">No data yet today</div>
+      </div>
+
+      <button class="btn-ghost btn-sm" id="clearTodayBtn">Clear today's data</button>
+    </div>
+
+    <!-- Block Tab -->
+    <div class="tab-content" id="block">
+      <div class="section-label">BLOCKED SITES</div>
+
+      <div class="input-row">
+        <input type="text" id="blockInput" placeholder="e.g. twitter.com" class="text-input" />
+        <button class="btn-primary btn-sm" id="addBlockBtn">ADD</button>
+      </div>
+
+      <div class="blocked-list" id="blockedList">
+        <div class="empty-state">No sites blocked</div>
+      </div>
+
+      <div class="preset-section">
+        <div class="section-label">QUICK PRESETS</div>
+        <div class="preset-grid">
+          <button class="preset-btn" data-sites="twitter.com,x.com">Twitter/X</button>
+          <button class="preset-btn" data-sites="reddit.com">Reddit</button>
+          <button class="preset-btn" data-sites="youtube.com">YouTube</button>
+          <button class="preset-btn" data-sites="instagram.com">Instagram</button>
+          <button class="preset-btn" data-sites="facebook.com">Facebook</button>
+          <button class="preset-btn" data-sites="tiktok.com">TikTok</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Tab -->
+    <div class="tab-content" id="report">
+      <div class="section-label">WEEKLY OVERVIEW</div>
+      <div class="chart-container" id="weekChart">
+        <canvas id="barChart" width="300" height="120"></canvas>
+      </div>
+
+      <div class="section-label">TOP SITES THIS WEEK</div>
+      <div class="site-list" id="weeklyTopSites">
+        <div class="empty-state">No data yet</div>
+      </div>
+
+      <div class="report-actions">
+        <button class="btn-ghost btn-sm" id="exportBtn">Export CSV</button>
+        <button class="btn-ghost btn-sm" id="exportJsonBtn">Export JSON</button>
+      </div>
+    </div>
+
+    <!-- Account Tab -->
+    <div class="tab-content" id="account">
+      <div id="loginSection">
+        <div class="section-label">SYNC ACCOUNT</div>
+        <p class="help-text">Sign in to sync data across devices via your local backend.</p>
+
+        <div class="form-group">
+          <label class="form-label">EMAIL</label>
+          <input type="email" id="emailInput" class="text-input" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">PASSWORD</label>
+          <input type="password" id="passwordInput" class="text-input" placeholder="••••••••" />
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-primary" id="loginBtn">SIGN IN</button>
+          <button class="btn-ghost" id="registerBtn">REGISTER</button>
+        </div>
+        <div id="authMsg" class="auth-msg"></div>
+      </div>
+
+      <div id="accountSection" style="display:none">
+        <div class="account-info">
+          <div class="account-avatar" id="accountAvatar">U</div>
+          <div>
+            <div class="account-email" id="accountEmail">—</div>
+            <div class="account-status">● Connected</div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:16px">BACKEND STATUS</div>
+        <div class="status-row">
+          <span>API Server</span>
+          <span class="status-badge" id="apiStatus">Checking...</span>
+        </div>
+        <div class="status-row">
+          <span>Last Sync</span>
+          <span id="lastSync">—</span>
+        </div>
+
+        <button class="btn-ghost btn-sm" style="margin-top:16px" id="logoutBtn">SIGN OUT</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

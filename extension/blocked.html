@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Site Blocked — FocusTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #e8e8e8;
+      font-family: 'IBM Plex Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .symbol { font-size: 48px; color: #333; }
+    .title { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #888; }
+    .domain { font-size: 22px; font-weight: 600; color: #e8e8e8; letter-spacing: 0.05em; }
+    .msg { font-size: 11px; color: #555; letter-spacing: 0.08em; }
+    .btn {
+      margin-top: 8px;
+      background: none;
+      border: 1px solid #2a2a2a;
+      color: #888;
+      padding: 10px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .btn:hover { border-color: #444; color: #e8e8e8; }
+  </style>
+</head>
+<body>
+  <div class="symbol">⊗</div>
+  <div class="title">SITE BLOCKED BY FOCUSTRACK</div>
+  <div class="domain" id="siteDisplay">—</div>
+  <div class="msg">This site is on your blocked list. Stay focused.</div>
+  <button class="btn" onclick="history.back()">← GO BACK</button>
+  <script>
+    const params = new URLSearchParams(location.search);
+    document.getElementById('siteDisplay').textContent = params.get('site') || 'Unknown site';
+  </script>
+</body>
+</html>
